@@ -111,12 +111,6 @@ signupBtn.addEventListener("click", () => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 console.log(errorMessage);
-                // if (errorMessage) {
-                //     swal({
-                //         text: "Email is already Exist.!",
-                //         icon: "warning"
-                //     })
-                // }
             })
     }
 })
@@ -173,6 +167,8 @@ let rulesBtn = document.getElementById('rule_button');
 rulesBtn.addEventListener('click', () => {
     let ruleDiv = document.getElementById('quiz_rule');
     ruleDiv.style.display = 'none';
+    let quizBody = document.getElementById('quiz_body');
+    quizBody.style.display = 'flex';
 })
 // const qusetions =
 // [
