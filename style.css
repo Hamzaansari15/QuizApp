@@ -1,0 +1,350 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #4070f4;
+}
+
+.container{
+    position: relative;
+    max-width: 430px;
+    width: 100%;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    margin: 0 20px;
+}
+
+.container .forms{
+    display: flex;
+    align-items: center;
+    height: 440px;
+    width: 200%;
+    transition: height 0.2s ease;
+}
+
+
+.container .form{
+    width: 50%;
+    padding: 30px;
+    background-color: #fff;
+    transition: margin-left 0.18s ease;
+}
+
+.container.active .login{
+    margin-left: -50%;
+    opacity: 0;
+    transition: margin-left 0.18s ease, opacity 0.15s ease;
+}
+
+.container .signup{
+    opacity: 0;
+    transition: opacity 0.09s ease;
+}
+.container.active .signup{
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+.container.active .forms{
+    height: 600px;
+}
+.container .form .title{
+    position: relative;
+    font-size: 27px;
+    font-weight: 600;
+}
+
+.form .title::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    width: 30px;
+    background-color: #4070f4;
+    border-radius: 25px;
+}
+
+.form .input-field{
+    position: relative;
+    height: 50px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.input-field input{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    padding: 0 35px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    border-bottom: 2px solid #ccc;
+    border-top: 2px solid transparent;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid){
+    border-bottom-color: #4070f4;
+}
+
+.input-field i{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #999;
+    font-size: 23px;
+    transition: all 0.2s ease;
+}
+
+.input-field input:is(:focus, :valid) ~ i{
+    color: #4070f4;
+}
+
+.input-field i.icon{
+    left: 0;
+}
+.input-field i.showHidePw{
+    right: 0;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.form .checkbox-text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.checkbox-text .checkbox-content{
+    display: flex;
+    align-items: center;
+}
+
+.checkbox-content input{
+    margin: 0 8px -2px 4px;
+    accent-color: #4070f4;
+}
+
+.form .text{
+    color: #333;
+    font-size: 14px;
+}
+
+.form a.text{
+    color: #4070f4;
+    text-decoration: none;
+}
+.form a:hover{
+    text-decoration: underline;
+}
+
+.form .button{
+    margin-top: 35px;
+}
+
+.form .button input{
+    border: none;
+    color: #fff;
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 6px;
+    background-color: #4070f4;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button input:hover{
+    background-color: #265df2;
+}
+
+.form .login-signup{
+    margin-top: 30px;
+    text-align: center;
+}
+#signup_body
+{
+    display: none;
+}
+#quiz_rule
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+#rule_div
+{
+    width: 32em;
+    min-height: 20em;
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 10px;
+    margin: 0px 0px 0px 2em;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+}
+#rule_heading
+{
+    position: relative;
+    color: #4070f4;
+    font-size: 2em;
+    font-weight: 550;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    top: 1em;
+    left: 1em;
+}
+#rules_list
+{
+    position: relative;
+    left: 2em;
+    top: 2em;
+    padding: 0px 2em 0px 0px;
+}
+#rules_list li
+{
+    list-style: none;
+    margin-top: 1em;
+    color: #333;
+    font-size: 1.3em;
+    font-weight: 450;
+}
+#rules_list span
+{
+    color: #4070f4;
+    font-weight: 500;
+}
+#rule_btn
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    top: 4em;
+    margin-bottom: 5em;
+}
+#rule_btn button
+{
+    width: 86%;
+    height: 2em;
+    background-color: #4070f4;
+    color: #fff;
+    font-size: 1.3em;
+    font-weight: 550;
+    border: none;
+    border-radius: 10px;
+    letter-spacing: 1.5px;
+}
+#rule_btn button:active
+{
+    opacity: 0.7;
+}
+#quiz_body
+{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#quiz_div
+{
+    width: 45em;
+    height: fit-content;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 15px;
+    margin-left: 1em;
+}
+#quiz_question
+{
+    position: relative;
+    top: 2em;
+    left: 1em;
+    color: #4070f4;
+    font-size: 1.4em;
+    font-weight: 500;
+    word-spacing: 3px;
+    padding: 0px 1em 0px 0px;
+}
+#quiz_option
+{
+    position: relative;
+    top: 5em;
+    left: 2.3em;
+}
+#quiz_option1,#quiz_option2,#quiz_option3,#quiz_option4
+{
+    display: flex;
+    align-items: center;
+    height: 100%;
+    margin: 15px 0px 0px 0px;
+    padding: 0px 2em 0px 0px ;
+}
+#quiz_option input
+{
+    position: relative;
+    top: 1px;
+    width: 1.3em; 
+    height: 1.5em; 
+}
+#quiz_option span 
+{
+    font-size: 1.3em;
+    margin: 0px 0px 0px 0.7em;
+}
+#quizBtn
+{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    top: 6em;
+    right: 2em;
+    margin-bottom: 8em;
+}
+#quizBtn button 
+{
+    width: 5em;
+    height: 2em;
+    color: #fff;
+    background-color: #4070f4;
+    border: none;
+    font-size: 1.4em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    border-radius: 5px;
+}
+#quizBtn button:active
+{
+    opacity: 0.7;
+}
+@media only screen and (max-width:600px) 
+{
+    #quizBtn
+    {
+        justify-content: center;
+        top: 8em;
+        right: 0%;
+    }       
+}
