@@ -8,7 +8,8 @@
     <title>Quiz App</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <script src="https://kit.fontawesome.com/83cf4209f0.js" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -16,120 +17,127 @@
 </head>
 
 <body>
-<div id="signup_body">
-    <div class="container">
-        <div class="forms">
-            <div class="form login">
-                <span class="title">Login</span>
+    <div id="signup_body">
+        <div class="container">
+            <div class="forms">
+                <div class="form login">
+                    <span class="title">Login</span>
 
-                <form action="#">
-                    <div class="input-field">
-                        <input id="login_email" type="text" placeholder="Enter your email" required>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input id="login_password" type="password" class="password" placeholder="Enter your password"
-                            required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="logCheck">
-                            <label for="logCheck" class="text">Remember me</label>
+                    <form action="#">
+                        <div class="input-field">
+                            <input id="login_email" type="text" placeholder="Enter your email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input id="login_password" type="password" class="password"
+                                placeholder="Enter your password" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
                         </div>
 
-                        <a href="#" class="text">Forgot password?</a>
-                    </div>
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="logCheck">
+                                <label for="logCheck" class="text">Remember me</label>
+                            </div>
 
-                    <div class="input-field button">
-                        <input id="login_btn" type="button" value="Login">
-                    </div>
-                </form>
-
-                <div class="login-signup">
-                    <span class="text">Not a member?
-                        <a href="#" class="text signup-link">Signup Now</a>
-                    </span>
-                </div>
-            </div>
-
-            <!-- Registration Form -->
-            <div class="form signup">
-                <span class="title">Registration</span>
-
-                <form action="#">
-                    <div class="input-field">
-                        <input id="signup_name" type="text" placeholder="Enter your name" required>
-                        <i class="uil uil-user"></i>
-                    </div>
-                    <div class="input-field">
-                        <input id="signup_email" type="text" placeholder="Enter your email" required>
-                        <i class="uil uil-envelope icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input id="signup_password" type="password" class="password" placeholder="Create a password"
-                            required>
-                        <i class="uil uil-lock icon"></i>
-                    </div>
-                    <div class="input-field">
-                        <input id="signup_confirm_password" type="password" class="password"
-                            placeholder="Confirm a password" required>
-                        <i class="uil uil-lock icon"></i>
-                        <i class="uil uil-eye-slash showHidePw"></i>
-                    </div>
-
-                    <div class="checkbox-text">
-                        <div class="checkbox-content">
-                            <input type="checkbox" id="termCon">
-                            <label for="termCon" class="text">I accepted all terms and conditions</label>
+                            <a href="#" class="text">Forgot password?</a>
                         </div>
-                    </div>
 
-                    <div class="input-field button">
-                        <input id="signup_btn" type="button" value="Signup">
-                    </div>
-                </form>
+                        <div class="input-field button">
+                            <input id="login_btn" type="button" value="Login">
+                        </div>
+                    </form>
 
-                <div class="login-signup">
-                    <span class="text">Already a member?
-                        <a href="#" class="text login-link">Login Now</a>
-                    </span>
+                    <div class="login-signup">
+                        <span class="text">Not a member?
+                            <a href="#" class="text signup-link">Signup Now</a>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Registration Form -->
+                <div class="form signup">
+                    <span class="title">Registration</span>
+
+                    <form action="#">
+                        <div class="input-field">
+                            <input id="signup_name" type="text" placeholder="Enter your name" required>
+                            <i class="uil uil-user"></i>
+                        </div>
+                        <div class="input-field">
+                            <input id="signup_email" type="text" placeholder="Enter your email" required>
+                            <i class="uil uil-envelope icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input id="signup_password" type="password" class="password" placeholder="Create a password"
+                                required>
+                            <i class="uil uil-lock icon"></i>
+                        </div>
+                        <div class="input-field">
+                            <input id="signup_confirm_password" type="password" class="password"
+                                placeholder="Confirm a password" required>
+                            <i class="uil uil-lock icon"></i>
+                            <i class="uil uil-eye-slash showHidePw"></i>
+                        </div>
+
+                        <div class="checkbox-text">
+                            <div class="checkbox-content">
+                                <input type="checkbox" id="termCon">
+                                <label for="termCon" class="text">I accepted all terms and conditions</label>
+                            </div>
+                        </div>
+
+                        <div class="input-field button">
+                            <input id="signup_btn" type="button" value="Signup">
+                        </div>
+                    </form>
+
+                    <div class="login-signup">
+                        <span class="text">Already a member?
+                            <a href="#" class="text login-link">Login Now</a>
+                        </span>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
-<div id="quiz_rule">
-    <div id="rule_div">
-        <span id="rule_heading">Rules:</span>
-        <div id="rules_list">
-            <li class="list_text">Total no. of quiz is <span>Five</span></li>
-            <li class="list_text">Time given to attemt one quiz is <span>15 Second</span></li>
-            <li class="list_text">Each quiz carry <span>One Marks</span></li>
-        </div>
-        <div id="rule_btn">
-            <button id="rule_button" type="submit">Continue</button>
+
+    <div id="quiz_rule">
+        <div id="rule_div">
+            <span id="rule_heading">Rules:</span>
+            <div id="rules_list">
+                <li class="list_text">Total no. of quiz is <span>Five</span></li>
+                <li class="list_text">Time given to attemt one quiz is <span>15 Second</span></li>
+                <li class="list_text">Each quiz carry <span>One Marks</span></li>
+            </div>
+            <div id="rule_btn">
+                <button id="rule_button" type="submit">Continue</button>
+            </div>
         </div>
     </div>
-</div>
 
-<div id="quiz_body">
-    <div id="quiz_div">
-        <div id="quiz_question">Q1) What is full form of HTML?</div>
-        <div id="quiz_option">
-        <div id="quiz_option1"><input type="radio" name="option" id="1"><span>Hyper text markup language</span></div>
-        <div id="quiz_option2"><input type="radio" name="option" id="1"><span>English</span></div>
-        <div id="quiz_option3"><input type="radio" name="option" id="1"><span>Urdu</span></div>
-        <div id="quiz_option4"><input type="radio" name="option" id="1"><span>Mathematics</span></div> 
-        </div>
-        <div id="quizBtn">
-            <button type="submit">Next</button>
+    <div id="quiz_body">
+        <div id="quiz_div">
+            <div id="quiz_question">Q1) What is full form of HTML?</div>
+            <div id="quiz_option">
+                <div id="quiz_option1"><input type="radio" name="option" id="1"><span>Hyper text markup language</span>
+                </div>
+                <div id="quiz_option2"><input type="radio" name="option" id="1"><span>English</span></div>
+                <div id="quiz_option3"><input type="radio" name="option" id="1"><span>Urdu</span></div>
+                <div id="quiz_option4"><input type="radio" name="option" id="1"><span>Mathematics</span></div>
+            </div>
+            <div id="quiz_btn">
+                <div id="quiz_next">
+                    <button type="submit">Next</button>
+                </div>
+                <div id="quiz_back">
+                    <button type="submit">Back</button>
+                </div>
+            </div>
         </div>
     </div>
-</div>
 
 
     <script type="module" src="app.js"></script>
