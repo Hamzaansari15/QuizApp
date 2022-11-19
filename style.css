@@ -197,7 +197,7 @@ body {
 }
 
 #signup_body {
-    /* display: none; */
+    display: none;
 }
 
 #quiz_rule {
@@ -285,11 +285,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
+    /* display: none; */
 }
 
 #quiz_div {
     width: 45em;
+    min-height: 25em;
     height: fit-content;
     background-color: #fff;
     border-radius: 10px;
@@ -342,14 +343,14 @@ body {
     position: relative;
     top: 8em;
     right: 2em;
-    margin-bottom: 8em;
+    margin-bottom: 10em;
 }
 #quiz_back {
     width: 0em;
     position: relative;
     top: -2.8em;
     left: 2em;
-    /* display: none; */
+    display: none;
 }
 @media only screen and (max-width:400px){
     #quiz_back {

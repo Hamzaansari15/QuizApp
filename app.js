@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebas
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    onAuthStateChanged, 
+    onAuthStateChanged,
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
 
@@ -157,23 +157,116 @@ window.onload = async () => {
     const auth = getAuth();
     onAuthStateChanged(auth, (user) => {
         if (user) {
-          const uid = user.uid;
-          console.log('hamza')
+            const uid = user.uid;
+            // console.log('hamza')
         } else {
         }
-      });
+    });
 };
 let rulesBtn = document.getElementById('rule_button');
 rulesBtn.addEventListener('click', () => {
     let ruleDiv = document.getElementById('quiz_rule');
     ruleDiv.style.display = 'none';
     let quizBody = document.getElementById('quiz_body');
-    quizBody.style.display = 'flex';
+    // quizBody.style.display = 'flex';
 })
-// const qusetions =
-// [
-//     {
-//         question: 'What is full is full form of HTML ?',
+const questions =
+    [
+        {
+            question: 'HTML stands for',
+            a: 'Hyper Text Markup Language',
+            b: 'HighText Machine Language',
+            c: 'HyperText and links Markup Language',
+            d: 'None of these',
+            correct: 'a'
+        },
+        {
+            question: 'How many tags are in a regular element?',
+            a: '2',
+            b: '1',
+            c: '4',
+            d: '3',
+            correct: 'a'
+        },
+        {
+            question: 'The correct sequence of HTML tags for starting a webpage is',
+            a: 'Head, Title, HTML, body',
+            b: 'HTML, Body, Title, Head',
+            c: 'HTML, Head, Title, Body',
+            d: 'HTML, Head, Title, Body',
+            correct: 'c'
+        },
+        {
+            question: 'What is the difference between an opening tag and a closing tag?',
+            a: 'Opening tag has a / in front',
+            b: 'Closing tag has a / in front',
+            c: 'There is no difference',
+            d: 'None of these',
+            correct: 'b'
+        },
+        {
+            question: '< br  / > What type of tag is this?',
+            a: 'Break tag',
+            b: 'A broken one',
+            c: 'An opening tag',
+            d: 'None of these',
+            correct: 'a'
+        }
+    ];
 
+
+
+let i = 0;
+let total = questions.length;
+let correct = 0;
+const loadQuestion = () => {
+    let quizDiv = document.getElementById('quiz');
+    let input = document.getElementsByClassName('input');
+    // console.log(input[1])
+    let quiz = ` <div id="quiz_question">Q${i + 1}) ${questions[i].question}</div>`;
+    input[0].innerHTML = questions[i].a
+    input[1].innerHTML = questions[i].b
+    input[2].innerHTML = questions[i].c
+    input[3].innerHTML = questions[i].d
+    quizDiv.innerHTML = quiz;
+}
+loadQuestion();
+const resetAnswer = () => {
+    let inputValue = document.querySelectorAll('.input_value');
+    inputValue.forEach((input) => {
+        input.checked = false
+    })
+}
+const getAnswer = () => {
+    let inputValue = document.querySelectorAll('.input_value');
+    if(inputValue.checked){
+        console.log('haaa')
+    }else{
+        console.log('no')
+    }
+}
+const getResult = () => {
+    getAnswer();
+}
+let nextBtn = document.getElementById('quiz_next_btn');
+nextBtn.addEventListener('click', () => {
+    ++i;
+    if(i == total){
+        return;
+    }
+    getResult();
+    loadQuestion();
+    resetAnswer();
+    
+    
+
+})
+// let backBtn = document.getElementById('quiz_back_btn');
+// backBtn.addEventListener('click', () => {
+//     --i;
+//     if(i < 1){
+//        backBtn.style.display = 'none'
 //     }
-// ]
+//     loadQuestion();
+
+// })
