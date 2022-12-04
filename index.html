@@ -17,6 +17,7 @@
 </head>
 
 <body>
+   
     <div id="signup_body">
         <div class="container">
             <div class="forms">
@@ -121,12 +122,12 @@
     <div id="quiz_body">
         <div id="quiz_div">
             <div id="quiz"></div>
-            <!-- <div id="quiz_question">Q1) What is full form of HTML?</div> -->
+            <div id="quiz_question"></div>
             <div id="quiz_option">
-                <div id="quiz_option1"><input class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option2"><input class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option3"><input class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option4"><input class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
+                <div id="quiz_option1"><input value="a" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
+                <div id="quiz_option2"><input value="b" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
+                <div id="quiz_option3"><input value="c" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
+                <div id="quiz_option4"><input value="d" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
             </div>
             <div id="quiz_btn">
                 <div id="quiz_next">
@@ -139,7 +140,16 @@
         </div>
     </div>
 
-
+    <div id="main_result">
+        <div id="result">
+            <div id="result_text">
+                <p>Your Score is <span id="score"></span></p>
+            <p>Thanks For Playing <span id="result"></span></p>
+            <div id="main_home_btn"><button id="home_btn"> Back To Home</button></div>
+            </div>
+        </div>
+    </div>
+    <!-- <div id="count"></div> -->
     <script type="module" src="app.js"></script>
 
 </body>
