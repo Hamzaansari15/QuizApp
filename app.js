@@ -2,9 +2,9 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/9.13.0/firebas
 import {
     getAuth,
     createUserWithEmailAndPassword,
-    onAuthStateChanged,
     signInWithEmailAndPassword
 } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-auth.js";
+import { getFirestore, doc, setDoc, getDoc } from "https://www.gstatic.com/firebasejs/9.13.0/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBk0z-HnPdl8DceZjh6DGjyIJsjmG0tv-4",
@@ -18,6 +18,7 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
 const container = document.querySelector(".container");
 const pwShowHide = document.querySelectorAll(".showHidePw");
@@ -79,10 +80,10 @@ signupBtn.addEventListener("click", () => {
         return false;
     }
     let signupPassword = document.getElementById("signup_password").value;
-    let signupPasswordReg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
-    if (!signupPasswordReg.test(signupPassword)) {
+    if (6 >= signupPassword.length) {
+        console.log(signupPassword.length)
         swal({
-            text: "Invalid  Password.!",
+            text: "Password must be six character.!",
             icon: "warning"
         })
         return false;
@@ -98,10 +99,12 @@ signupBtn.addEventListener("click", () => {
         createUserWithEmailAndPassword(auth, signupEmail, signupPassword)
             .then(async (userCredential) => {
                 const user = userCredential.user;
-                await setDoc(doc(db, "user", user.uid), {
+                localStorage.setItem('name', signupName);
+                await setDoc(doc(db, "user", uid), {
                     name: signupName,
                     email: signupEmail
                 });
+
                 swal("Good job!", "Signup successful!")
                     .then(() => {
                         location.reload();
@@ -112,6 +115,7 @@ signupBtn.addEventListener("click", () => {
                 const errorMessage = error.message;
                 console.log(errorMessage);
             })
+
     }
 })
 
@@ -130,6 +134,7 @@ loginBtn.addEventListener("click", () => {
     signInWithEmailAndPassword(auth, loginEmail, loginPassword)
         .then((userCredential) => {
             const user = userCredential.user;
+
             if (user) {
                 console.log('login')
                 let signUpBody = document.getElementById('signup_body');
@@ -144,8 +149,10 @@ loginBtn.addEventListener("click", () => {
             console.log(errorMessage);
             if (errorMessage) {
                 swal({
-                    text: "User Not Found!",
+                    text: "Invalid Email or Password!",
                     icon: "warning",
+                }).then(() => {
+                    location.reload();
                 })
 
             }
@@ -153,120 +160,153 @@ loginBtn.addEventListener("click", () => {
         })
 
 });
-window.onload = async () => {
-    const auth = getAuth();
-    onAuthStateChanged(auth, (user) => {
-        if (user) {
-            const uid = user.uid;
-            // console.log('hamza')
-        } else {
-        }
-    });
-};
+
 let rulesBtn = document.getElementById('rule_button');
+let quizBody = document.getElementById('quiz_body');
 rulesBtn.addEventListener('click', () => {
     let ruleDiv = document.getElementById('quiz_rule');
     ruleDiv.style.display = 'none';
-    let quizBody = document.getElementById('quiz_body');
-    // quizBody.style.display = 'flex';
+    quizBody.style.display = 'flex';
+    setInterval(updateCountdown, 1000);
 })
 const questions =
     [
         {
             question: 'HTML stands for',
-            a: 'Hyper Text Markup Language',
-            b: 'HighText Machine Language',
-            c: 'HyperText and links Markup Language',
-            d: 'None of these',
-            correct: 'a'
+            'a': 'Hyper Text Markup Language',
+            'b': 'HighText Machine Language',
+            'c': 'HyperText and links Markup Language',
+            'd': 'None of these',
+            'correct': 'a'
         },
         {
             question: 'How many tags are in a regular element?',
-            a: '2',
-            b: '1',
-            c: '4',
-            d: '3',
-            correct: 'a'
+            'a': '1',
+            'c': '4',
+            'c': '2',
+            'd': '3',
+            'correct': 'c'
         },
         {
             question: 'The correct sequence of HTML tags for starting a webpage is',
-            a: 'Head, Title, HTML, body',
-            b: 'HTML, Body, Title, Head',
-            c: 'HTML, Head, Title, Body',
-            d: 'HTML, Head, Title, Body',
-            correct: 'c'
+            'a': 'HTML, Body, Title, Head',
+            'b': 'HTML, Head, Title, Body',
+            'c': 'Head, Title, HTML, body',
+            'd': 'HTML, Head, Title, Body',
+            'correct': 'b'
         },
         {
             question: 'What is the difference between an opening tag and a closing tag?',
-            a: 'Opening tag has a / in front',
-            b: 'Closing tag has a / in front',
-            c: 'There is no difference',
-            d: 'None of these',
-            correct: 'b'
+            'a': 'Opening tag has a / in fron',
+            'b': 'There is no difference',
+            'c': 'Closing tag has a / in front',
+            'd': 'None of these',
+            'correct': 'c'
         },
         {
             question: '< br  / > What type of tag is this?',
-            a: 'Break tag',
-            b: 'A broken one',
-            c: 'An opening tag',
-            d: 'None of these',
-            correct: 'a'
+            'a': 'Break tag',
+            'b': 'A broken one',
+            'c': 'An opening tag',
+            'd': 'None of these',
+            'correct': 'a'
         }
     ];
 
 
 
-let i = 0;
+let index = 0;
 let total = questions.length;
-let correct = 0;
+let right = 0;
+let inputValue = document.querySelectorAll('.input_value');
 const loadQuestion = () => {
-    let quizDiv = document.getElementById('quiz');
-    let input = document.getElementsByClassName('input');
-    // console.log(input[1])
-    let quiz = ` <div id="quiz_question">Q${i + 1}) ${questions[i].question}</div>`;
-    input[0].innerHTML = questions[i].a
-    input[1].innerHTML = questions[i].b
-    input[2].innerHTML = questions[i].c
-    input[3].innerHTML = questions[i].d
-    quizDiv.innerHTML = quiz;
-}
-loadQuestion();
-const resetAnswer = () => {
-    let inputValue = document.querySelectorAll('.input_value');
-    inputValue.forEach((input) => {
-        input.checked = false
-    })
-}
-const getAnswer = () => {
-    let inputValue = document.querySelectorAll('.input_value');
-    if(inputValue.checked){
-        console.log('haaa')
-    }else{
-        console.log('no')
-    }
-}
-const getResult = () => {
-    getAnswer();
-}
-let nextBtn = document.getElementById('quiz_next_btn');
-nextBtn.addEventListener('click', () => {
-    ++i;
-    if(i == total){
+    if (index == total) {
+        endQuiz();
         return;
     }
-    getResult();
-    loadQuestion();
-    resetAnswer();
-    
-    
+    let question = document.getElementById('quiz_question');
+    question.innerHTML = `Q${index + 1}) ${questions[index].question}`;
+    let option = document.querySelectorAll('.input');
+    option[0].innerHTML = questions[index].a;
+    option[1].innerHTML = questions[index].b;
+    option[2].innerHTML = questions[index].c;
+    option[3].innerHTML = questions[index].d;
+}
+loadQuestion();
 
+const endQuiz = () => {
+    let result = document.getElementById('main_result');
+    result.style.display = 'flex';
+    quizBody.style.display = 'none';
+    let score = document.getElementById('score');
+    score.innerHTML = `${right}/5`
+}
+
+const loadNextQuestion = () => {
+    inputValue.forEach((input) => {
+        if (input.checked) {
+            index++;
+            loadQuestion();
+        }
+    })
+}
+
+const submitQuiz = () => {
+    const correctAnswer = getAnswer();
+    console.log(correctAnswer);
+    console.log(questions[index].correct);
+    if (correctAnswer === questions[index].correct) {
+        right++;
+    }
+    else {
+        console.log('wrong')
+    }
+    loadNextQuestion();
+    resetQuiz();
+}
+
+const getAnswer = () => {
+    let answer;
+    inputValue.forEach((input) => {
+        if (input.checked) {
+            answer = input.value;
+        }
+    })
+    return answer;
+}
+
+const resetQuiz = () => {
+    inputValue.forEach((input) => {
+        input.checked = false;
+    })
+}
+
+let nextQuestion = document.getElementById('quiz_next_btn');
+nextQuestion.addEventListener('click', submitQuiz)
+
+let homeBtn = document.getElementById('home_btn');
+homeBtn.addEventListener('click', () => {
+    location.reload();
 })
-// let backBtn = document.getElementById('quiz_back_btn');
-// backBtn.addEventListener('click', () => {
-//     --i;
-//     if(i < 1){
-//        backBtn.style.display = 'none'
-//     }
-//     loadQuestion();
 
-// })
+
+// let startingTime = 0.1;
+// let time = startingTime * 60
+// let count = document.getElementById('count')
+// console.log(count)
+
+// const updateCountdown = () => {
+//     const min = Math.floor(time / 60);
+//     let seconds = time % 60;
+//     seconds = seconds < 10 ? '0' + seconds : seconds
+//     count.innerHTML = `${min}:${seconds}`;
+//     time--;
+//     if(seconds <= 0){
+//         index++;
+//         loadQuestion();
+//         if(seconds <= 0){
+//             startingTime = 0.25;
+//         }
+//     }
+// }
+
