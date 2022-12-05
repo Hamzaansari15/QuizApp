@@ -17,7 +17,7 @@
 </head>
 
 <body>
-   
+
     <div id="signup_body">
         <div class="container">
             <div class="forms">
@@ -118,23 +118,31 @@
             </div>
         </div>
     </div>
-
-    <div id="quiz_body">
-        <div id="quiz_div">
-            <div id="quiz"></div>
-            <div id="quiz_question"></div>
-            <div id="quiz_option">
-                <div id="quiz_option1"><input value="a" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option2"><input value="b" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option3"><input value="c" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-                <div id="quiz_option4"><input value="d" class="input_value" required type="radio" name="option" id="1"><span class="input"></span></div>
-            </div>
-            <div id="quiz_btn">
-                <div id="quiz_next">
-                    <button id="quiz_next_btn" type="submit">Next</button>
+    <div id="counter">
+        <div id="main_count">
+            <div id="count"></div>
+        </div>
+        <div id="quiz_body">
+            <div id="quiz_div">
+                <div id="quiz"></div>
+                <div id="quiz_question"></div>
+                <div id="quiz_option">
+                    <div id="quiz_option1"><input value="a" class="input_value" required type="radio" name="option"
+                            id="1"><span class="input"></span></div>
+                    <div id="quiz_option2"><input value="b" class="input_value" required type="radio" name="option"
+                            id="1"><span class="input"></span></div>
+                    <div id="quiz_option3"><input value="c" class="input_value" required type="radio" name="option"
+                            id="1"><span class="input"></span></div>
+                    <div id="quiz_option4"><input value="d" class="input_value" required type="radio" name="option"
+                            id="1"><span class="input"></span></div>
                 </div>
-                <div id="quiz_back">
-                    <button id="quiz_back_btn" type="submit">Back</button>
+                <div id="quiz_btn">
+                    <div id="quiz_next">
+                        <button id="quiz_next_btn" type="submit">Next</button>
+                    </div>
+                    <div id="quiz_back">
+                        <button id="quiz_back_btn" type="submit">Back</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -144,12 +152,11 @@
         <div id="result">
             <div id="result_text">
                 <p>Your Score is <span id="score"></span></p>
-            <p>Thanks For Playing <span id="result"></span></p>
-            <div id="main_home_btn"><button id="home_btn"> Back To Home</button></div>
+                <p>Thanks For Playing <span id="result"></span></p>
+                <div id="main_home_btn"><button id="home_btn"> Back To Home</button></div>
             </div>
         </div>
     </div>
-    <!-- <div id="count"></div> -->
     <script type="module" src="app.js"></script>
 
 </body>
