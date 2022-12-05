@@ -163,8 +163,10 @@ loginBtn.addEventListener("click", () => {
 
 let rulesBtn = document.getElementById('rule_button');
 let quizBody = document.getElementById('quiz_body');
+let counter = document.getElementById('counter');
 rulesBtn.addEventListener('click', () => {
     let ruleDiv = document.getElementById('quiz_rule');
+    counter.style.display = 'block'
     ruleDiv.style.display = 'none';
     quizBody.style.display = 'flex';
     setInterval(updateCountdown, 1000);
@@ -221,6 +223,8 @@ let right = 0;
 let inputValue = document.querySelectorAll('.input_value');
 const loadQuestion = () => {
     if (index == total) {
+        counter.style.display = 'none';
+        count.style.display = 'none';
         endQuiz();
         return;
     }
@@ -290,23 +294,21 @@ homeBtn.addEventListener('click', () => {
 })
 
 
-// let startingTime = 0.1;
-// let time = startingTime * 60
-// let count = document.getElementById('count')
-// console.log(count)
+let startingTime = 0.2;
+let time = startingTime * 60
+let count = document.getElementById('count')
+console.log(count)
 
-// const updateCountdown = () => {
-//     const min = Math.floor(time / 60);
-//     let seconds = time % 60;
-//     seconds = seconds < 10 ? '0' + seconds : seconds
-//     count.innerHTML = `${min}:${seconds}`;
-//     time--;
-//     if(seconds <= 0){
-//         index++;
-//         loadQuestion();
-//         if(seconds <= 0){
-//             startingTime = 0.25;
-//         }
-//     }
-// }
+const updateCountdown = () => {
+    const min = Math.floor(time / 60);
+    let seconds = time % 60;
+    seconds = seconds < 10 ? '0' + seconds : seconds
+    count.innerHTML = `${min}:${seconds}`;
+    time--;
+    if(seconds <= 0){
+        endQuiz();
+        counter.style.display = 'none';
+        count.style.display = 'none';
+    }
+}
 
