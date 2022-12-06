@@ -61,6 +61,7 @@ login.addEventListener("click", () => {
 
 let signupBtn = document.getElementById("signup_btn");
 signupBtn.addEventListener("click", () => {
+    signupBtn.style.opacity = '0.7';
     let signupName = document.getElementById("signup_name").value;
     let signupNameReg = /^[a-zA-Z ]+$/;
     if (!signupNameReg.test(signupName)) {
@@ -80,10 +81,10 @@ signupBtn.addEventListener("click", () => {
         return false;
     }
     let signupPassword = document.getElementById("signup_password").value;
-    if (6 >= signupPassword.length) {
+    if (5 > signupPassword.length) {
         console.log(signupPassword.length)
         swal({
-            text: "Password must be six character.!",
+            text: "Password must be greater than six character.!",
             icon: "warning"
         })
         return false;
@@ -100,10 +101,7 @@ signupBtn.addEventListener("click", () => {
             .then(async (userCredential) => {
                 const user = userCredential.user;
                 localStorage.setItem('name', signupName);
-                await setDoc(doc(db, "user", uid), {
-                    name: signupName,
-                    email: signupEmail
-                });
+            
 
                 swal("Good job!", "Signup successful!")
                     .then(() => {
@@ -113,7 +111,12 @@ signupBtn.addEventListener("click", () => {
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorMessage);
+                if(errorMessage){
+                    swal({
+                        text: "Email is already used",
+                        icon: "warning"
+                    }) 
+                }
             })
 
     }
@@ -126,10 +129,9 @@ signupBtn.addEventListener("click", () => {
 
 let loginBtn = document.getElementById("login_btn")
 loginBtn.addEventListener("click", () => {
+    loginBtn.style.opacity = '0.7';
     let loginEmail = document.getElementById("login_email").value;
     let loginPassword = document.getElementById("login_password").value;
-    console.log(loginEmail);
-    console.log(loginPassword);
     const auth = getAuth();
     signInWithEmailAndPassword(auth, loginEmail, loginPassword)
         .then((userCredential) => {
@@ -166,10 +168,10 @@ let quizBody = document.getElementById('quiz_body');
 let counter = document.getElementById('counter');
 rulesBtn.addEventListener('click', () => {
     let ruleDiv = document.getElementById('quiz_rule');
+    setInterval(updateCountdown, 1000);
     counter.style.display = 'block'
     ruleDiv.style.display = 'none';
     quizBody.style.display = 'flex';
-    setInterval(updateCountdown, 1000);
 })
 const questions =
     [
@@ -184,7 +186,7 @@ const questions =
         {
             question: 'How many tags are in a regular element?',
             'a': '1',
-            'c': '4',
+            'b': '4',
             'c': '2',
             'd': '3',
             'correct': 'c'
@@ -228,6 +230,7 @@ const loadQuestion = () => {
         endQuiz();
         return;
     }
+    
     let question = document.getElementById('quiz_question');
     question.innerHTML = `Q${index + 1}) ${questions[index].question}`;
     let option = document.querySelectorAll('.input');
@@ -243,12 +246,13 @@ const endQuiz = () => {
     result.style.display = 'flex';
     quizBody.style.display = 'none';
     let score = document.getElementById('score');
-    score.innerHTML = `${right}/5`
+    score.innerHTML = `${right}/5`;
 }
 
 const loadNextQuestion = () => {
     inputValue.forEach((input) => {
         if (input.checked) {
+            time = 15;
             index++;
             loadQuestion();
         }
@@ -257,13 +261,8 @@ const loadNextQuestion = () => {
 
 const submitQuiz = () => {
     const correctAnswer = getAnswer();
-    console.log(correctAnswer);
-    console.log(questions[index].correct);
     if (correctAnswer === questions[index].correct) {
         right++;
-    }
-    else {
-        console.log('wrong')
     }
     loadNextQuestion();
     resetQuiz();
@@ -294,21 +293,17 @@ homeBtn.addEventListener('click', () => {
 })
 
 
-let startingTime = 0.2;
-let time = startingTime * 60
+let time = 5;
 let count = document.getElementById('count')
-console.log(count)
 
 const updateCountdown = () => {
-    const min = Math.floor(time / 60);
     let seconds = time % 60;
-    seconds = seconds < 10 ? '0' + seconds : seconds
-    count.innerHTML = `${min}:${seconds}`;
+    count.innerHTML = `Timer : ${seconds}`;
     time--;
-    if(seconds <= 0){
-        endQuiz();
-        counter.style.display = 'none';
-        count.style.display = 'none';
+    if (seconds == 1 && index != total ) {
+        time = 15
+        index++;
+        loadQuestion();
+        resetQuiz();
     }
 }
-
