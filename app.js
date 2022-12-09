@@ -241,8 +241,8 @@ const loadQuestion = () => {
 }
 loadQuestion();
 
+let result = document.getElementById('main_result');
 const endQuiz = () => {
-    let result = document.getElementById('main_result');
     result.style.display = 'flex';
     quizBody.style.display = 'none';
     let score = document.getElementById('score');
@@ -252,7 +252,7 @@ const endQuiz = () => {
 const loadNextQuestion = () => {
     inputValue.forEach((input) => {
         if (input.checked) {
-            time = 15;
+            time = 30;
             index++;
             loadQuestion();
         }
@@ -287,13 +287,12 @@ const resetQuiz = () => {
 let nextQuestion = document.getElementById('quiz_next_btn');
 nextQuestion.addEventListener('click', submitQuiz)
 
-let homeBtn = document.getElementById('home_btn');
+let homeBtn = document.getElementById('logout_btn');
 homeBtn.addEventListener('click', () => {
     location.reload();
 })
 
-
-let time = 5;
+let time = 30;
 let count = document.getElementById('count')
 
 const updateCountdown = () => {
@@ -301,7 +300,7 @@ const updateCountdown = () => {
     count.innerHTML = `Timer : ${seconds}`;
     time--;
     if (seconds == 1 && index != total ) {
-        time = 15
+        time = 30
         index++;
         loadQuestion();
         resetQuiz();
